@@ -25,7 +25,7 @@ jobs:
       name: 'Creation of Google cloud function'
       uses: 'google-github-actions/deploy-cloud-functions@v1'
       with:
-        name: 'telegram-bot-message-handler'
+        name: '${{ secrets.GCP_FUNCTION_NAME }}'
         runtime: 'python312'
         entry_point: 'telegram_bot_message_handler'
         region: 'europe-central2'
