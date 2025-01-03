@@ -1,0 +1,9 @@
+.gcloudignore
+.git
+.github
+.gitignore
+.idea
+requirements.txt
+requirements.local.txt
+
+#!include:.gitignore
