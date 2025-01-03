@@ -5,14 +5,14 @@ import functions_framework
 from src.update_handler import handle_bot_request
 
 
-async def handle_async(request_json):
+async def _handle_async(request_json):
     bot_token = os.environ.get("TELEGRAM_BOT_TOKEN")
     await handle_bot_request(bot_token, request_json)
     return {"statusCode": 200}
 
 
 @functions_framework.http
-def bot_assistant_handler(request):
+def telegram_bot_message_handler(request):
     request_json = request.get_json(silent=True)
     try:
         loop = asyncio.get_event_loop()
@@ -23,4 +23,4 @@ def bot_assistant_handler(request):
         else:
             raise
 
-    return loop.run_until_complete(handle_async(request_json))
+    return loop.run_until_complete(_handle_async(request_json))
