@@ -35,3 +35,6 @@ jobs:
         https_trigger_security_level: 'secure_always'
         secret_environment_variables: |-
           TELEGRAM_BOT_TOKEN=projects/212766406803/secrets/TELEGRAM_BOT_TOKEN
+
+    - id: 'webhook-telegram-bot'
+      run: 'curl --request POST https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/setWebhook?url=${{ steps.deploy.outputs.url }}'
