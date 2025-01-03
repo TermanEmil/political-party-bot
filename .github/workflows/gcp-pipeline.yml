@@ -24,7 +24,6 @@ jobs:
     - id: 'deploy'
       name: 'Creation of Google cloud function'
       uses: 'google-github-actions/deploy-cloud-functions@v1'
-      timeout-minutes: 10
       with:
         name: 'telegram-bot-message-handler'
         runtime: 'python312'
