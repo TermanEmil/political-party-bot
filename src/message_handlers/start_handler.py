@@ -1,6 +1,8 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes
 
+from src.message_handlers import language
+
 
 async def start_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     text = '\n'.join([
@@ -9,7 +11,7 @@ async def start_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
     ])
 
     keyboard = InlineKeyboardMarkup([[
-        InlineKeyboardButton('RO', callback_data='language-ro'),
-        InlineKeyboardButton('РУ', callback_data='language-ru'),
+        InlineKeyboardButton('RO', callback_data=language.ro),
+        InlineKeyboardButton('РУ', callback_data=language.ru),
     ]])
     await update.message.reply_text(text, reply_markup=keyboard)
