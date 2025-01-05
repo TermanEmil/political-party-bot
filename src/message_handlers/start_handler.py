@@ -1,17 +1,12 @@
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import Update
 from telegram.ext import ContextTypes
-
-from src.message_handlers import language
 
 
 async def start_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     text = '\n'.join([
-        f'Alegeti limba',
-        f'Выбрать язык'
+        f'Acest bot ofera informatii despre partidul politic MAN',
+        f'Pentru a schimba limba acceseaza /limba',
+        f'Чтобы изменить язык, выберите /limba',
     ])
 
-    keyboard = InlineKeyboardMarkup([[
-        InlineKeyboardButton('RO', callback_data=language.ro),
-        InlineKeyboardButton('РУ', callback_data=language.ru),
-    ]])
-    await update.message.reply_text(text, reply_markup=keyboard)
+    await update.message.reply_text(text)

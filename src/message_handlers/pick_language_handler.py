@@ -1,10 +1,23 @@
-from telegram import Update
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes
 
 from src.message_handlers import language
 
 
-async def language_picking_callback_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def pick_language_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    text = '\n'.join([
+        f'Alegeti limba',
+        f'Выбрать язык'
+    ])
+
+    keyboard = InlineKeyboardMarkup([[
+        InlineKeyboardButton('RO', callback_data=language.ro),
+        InlineKeyboardButton('РУ', callback_data=language.ru),
+    ]])
+    await update.message.reply_text(text, reply_markup=keyboard)
+
+
+async def pick_language_callback_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
 
     if not query or query.data not in [language.ro, language.ru]:
