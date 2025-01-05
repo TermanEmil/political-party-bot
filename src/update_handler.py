@@ -3,6 +3,7 @@ from typing import Optional
 from telegram import Update
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler
 
+from src.message_handlers.about_handler import about_handler
 from src.message_handlers.pick_language_handler import pick_language_handler, pick_language_callback_handler
 from src.message_handlers.start_handler import start_handler
 from src.utils.bot_utils import stringify
@@ -37,6 +38,8 @@ async def handle_bot_request(bot_token: str, message_data: dict):
     application.add_handler(CommandHandler("start", start_handler))
     application.add_handler(CommandHandler("limba", pick_language_handler))
     application.add_handler(CallbackQueryHandler(pick_language_callback_handler))
+
+    application.add_handler(CommandHandler("about", about_handler))
 
     on_finish = lambda delta: logger.info(f'User {user_id}: Request handling finished in {delta} seconds.')
     with Stopwatch(on_finish=on_finish):
